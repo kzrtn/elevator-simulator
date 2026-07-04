@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block title %}
+    Main
+{% endblock %}
+
+{% block main %}
+        <div style="display: none;">
+            <p id="num_of_elevators">{{settings.elevator}}</p> <p id="num_of_floors">{{settings.floors}}</p>
+        </div>
+        <div class="d-flex justify-content-center" style="margin-bottom: 20px;">
+            <a href="/settings">Settings</a>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="row">
+            {% for j in range(settings.elevator) %}
+            <div class="long">
+                {% for i in range(settings.floors) | reverse %}
+                <div class="d-flex justify-content-end floor" style="height:100px; align-items: end;">
+                    {% if (j == 0) %}
+                    <h4>L{{i+1}}</h4>
+                    {% endif %}
+                    <div class="floor-btns">
+                        {% if i+1 != settings.floors%}
+                        <button class="floor-btn floor{{i+1}}" id="lvl{{i+1}}_el{{j+1}}_up"><i class="bi bi-caret-up-fill"></i></button>
+                        {% endif %}
+                        {% if i+1 > 1%}
+                        <button class="floor-btn floor{{i+1}}" id="lvl{{i+1}}_el{{j+1}}_dn"><i class="bi bi-caret-down-fill"></i></button>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="elevator">
+                <canvas id="elevator{{j+1}}" width="120px" height="{{(settings.floors * 100) + 1}}px;">An elevator shaft with an elevator in it, up/down buttons on each floor, and an elevator keypad of numbers underneath each elevator shaft.</canvas>
+
+                <div class="elevator-btns">
+                    {% for i in range(settings.floors) | reverse %}
+                    <button class="elevator-btn elevator_{{j+1}}" id="elevator{{j+1}}_btn{{i+1}}">{{i+1}}</button>
+                    {% endfor %}
+                    {% if settings.floors % 2 != 0 %}
+                    <button class="elevator-btn" disabled></button>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script type="module" src="static/script.js"></script>
+{% endblock %}
