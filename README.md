@@ -20,14 +20,13 @@ Features:
 **Frontend**
 
 * HTML, CSS, and Vanilla JavaScript (ES6 Modules)
-* Interactive rendering using `requestAnimationFrame()`
-* Event-driven button logic and movement animation
+* Rendered using `requestAnimationFrame()`
+* Event-driven based on button onClick
 
 **Backend**
 
 * **Flask** (Python): Just to display the page and connect to the backend
 * **SQLite3**: Stores the number of elevators and floors
-* 
 
 ## How It Works
 
